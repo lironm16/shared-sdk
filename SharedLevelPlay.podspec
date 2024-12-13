@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name             = 'SharedLevelPlay'
   s.version          = '1.local'
   s.summary          = 'Shared for LevelPlay'
-  s.description      = 'Local shared for development.'
+  s.description      = 'Local shared for development'
   s.homepage         = "http://www.is.com/"
   s.license          = { :type => 'Commercial', :text => 'https://platform.ironsrc.com/partners/terms-and-conditions-new-user' }
   s.author           = { "IronSource" => "http://www.is.com/contact/" }
