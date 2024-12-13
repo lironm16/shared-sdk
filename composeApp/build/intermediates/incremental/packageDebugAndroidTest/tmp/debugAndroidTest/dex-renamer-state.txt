@@ -1,0 +1,4 @@
+#Sat Dec 07 21:12:58 IST 2024
+base.0=/Users/liron.matityahu/Projects/kmp-basic-sample-master/composeApp/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
+path.0=0/classes.dex
+renamed.0=classes.dex

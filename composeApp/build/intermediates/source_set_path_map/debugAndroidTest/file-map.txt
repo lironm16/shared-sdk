@@ -1,0 +1,4 @@
+com.jetbrains.basicsample.test.composeApp-androidTest-0 /Users/liron.matityahu/Projects/kmp-basic-sample-master/composeApp/build/generated/res/resValues/androidTest/debug
+com.jetbrains.basicsample.test.composeApp-mergeDebugAndroidTestResources-1 /Users/liron.matityahu/Projects/kmp-basic-sample-master/composeApp/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.jetbrains.basicsample.test.composeApp-mergeDebugAndroidTestResources-2 /Users/liron.matityahu/Projects/kmp-basic-sample-master/composeApp/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.jetbrains.basicsample.test.composeApp-merged_res-3 /Users/liron.matityahu/Projects/kmp-basic-sample-master/composeApp/build/intermediates/merged_res/debugAndroidTest
