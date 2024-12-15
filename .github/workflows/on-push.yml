@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - "**" # Trigger on all branches
-  workflow_dispatch:  # Manual trigger for debugging
+  # workflow_dispatch:  # Manual trigger for debugging
 
 jobs:
   mock-build:
@@ -25,7 +25,7 @@ jobs:
     if: needs.mock-build.outputs.build_result == 'failure' || github.event_name == 'workflow_dispatch'
     strategy:
       matrix:
-        repository: ["lironm16/ios", "lironm16/android"]
+        repository: ["lironm16/ios"]
 
     runs-on: ubuntu-latest
 
@@ -36,4 +36,4 @@ jobs:
           token: ${{ secrets.WORKFLOW_TRIGGER_PAT }}
           repository: ${{ matrix.repository }}
           event-type: rerun-pr-check
-          client-payload: '{"branch": "main"}'
+          client-payload: '{"branch": "${{ github.ref_name }}"}'
