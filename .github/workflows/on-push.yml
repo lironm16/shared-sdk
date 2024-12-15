@@ -33,10 +33,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger Workflow
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ secrets.SHARED_SDK_PAT }}
-          repository: ${{ matrix.repository }}
-          event-type: rerun-pr-check
-          client-payload: '{"ref": "${{ github.ref_name }}"}'
+      - name: Trigger Workflow via curl
+        env:
+          PAT: ${{ secrets.WORKFLOW_TRIGGER_PAT }}
+        run: |
+          echo "Triggering repository_dispatch event for ${{ matrix.repository }} on branch ${{ github.ref_name }}"
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $PAT" \
+            https://api.github.com/repos/${{ matrix.repository }}/dispatches \
+            -d '{"event_type": "rerun-pr-check", "client_payload": {"branch": "${{ github.ref_name }}"}}'
