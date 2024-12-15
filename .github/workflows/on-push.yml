@@ -36,7 +36,7 @@ jobs:
       - name: Trigger Workflow
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.WORKFLOW_TRIGGER_PAT }}
+          token: ${{ secrets.SHARED_SDK_PAT }}
           repository: ${{ matrix.repository }}
           event-type: rerun-pr-check
-          client-payload: '{"branch": "${{ github.ref_name }}"}'
+          client-payload: '{"ref": "${{ github.ref_name }}"}'
