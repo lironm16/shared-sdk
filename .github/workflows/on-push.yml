@@ -1,0 +1,29 @@
+name: On Push Workflow
+
+on:
+  push:
+    branches:
+      - "**" # Trigger on all branches
+
+jobs:
+  mock-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Mock Build Result
+        id: build
+        run: |
+          # Simulating a build failure
+          echo "build_result=failure" >> $GITHUB_OUTPUT
+
+      - name: Trigger iOS Workflow if Build Fails
+        if: steps.build.outputs.build_result == 'failure'
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.IOS_WORKFLOW_TRIGGER_PAT }}
+          repository: lironm16/ios
+          event-type: rerun-ios-pr-check
+          client-payload: '{"branch": "${{ github.ref_name }}"}'
