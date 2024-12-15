@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Trigger Workflow
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.WORKFLOW_TRIGGER_PAT }}
           repository: ${{ matrix.repository }}
