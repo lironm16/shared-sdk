@@ -23,7 +23,7 @@ jobs:
         if: steps.build.outputs.build_result == 'failure'
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ secrets.IOS_WORKFLOW_TRIGGER_PAT }}
+          token: ${{ secrets.WORKFLOW_TRIGGER_PAT }}
           repository: lironm16/ios
           event-type: rerun-ios-pr-check
           client-payload: '{"branch": "${{ github.ref_name }}"}'
