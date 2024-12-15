@@ -19,11 +19,20 @@ jobs:
           # Simulating a build failure
           echo "build_result=failure" >> $GITHUB_OUTPUT
 
-      - name: Trigger iOS Workflow if Build Fails
-        if: steps.build.outputs.build_result == 'failure'
+  trigger-workflows:
+    needs: mock-build
+    if: needs.mock-build.outputs.build_result == 'failure'
+    strategy:
+      matrix:
+        repository: ["lironm16/ios", "lironm16/android"]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Workflow
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.WORKFLOW_TRIGGER_PAT }}
-          repository: lironm16/ios
-          event-type: rerun-ios-pr-check
+          repository: ${{ matrix.repository }}
+          event-type: rerun-pr-check
           client-payload: '{"branch": "${{ github.ref_name }}"}'
