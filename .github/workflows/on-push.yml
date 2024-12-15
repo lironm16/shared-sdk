@@ -10,6 +10,9 @@ jobs:
   mock-build:
     runs-on: ubuntu-latest
 
+    outputs:
+      build_result: ${{ steps.build.outputs.build_result }}
+      
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -22,7 +25,7 @@ jobs:
 
   trigger-workflows:
     needs: mock-build
-    if: needs.mock-build.outputs.build_result == 'failure' || github.event_name == 'workflow_dispatch'
+    if: needs.mock-build.outputs.build_result == 'failure'
     strategy:
       matrix:
         repository: ["lironm16/ios"]
